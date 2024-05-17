@@ -14,7 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importDefault(require("mongoose"));
 const employee_1 = __importDefault(require("../models/employee"));
-const mongoURI = 'mongodb://localhost:27017/rbr-db';
+const mongoURI = 'mongodb://mongo:27017/rbr-db';
 const initDB = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         yield mongoose_1.default.connect(mongoURI);
@@ -24,6 +24,7 @@ const initDB = () => __awaiter(void 0, void 0, void 0, function* () {
             { name: 'Jane Smith', title: 'Product Manager', department: 'Product' },
             { name: 'Alice Johnson', title: 'Designer', department: 'Design' },
         ];
+        yield employee_1.default.deleteMany({});
         yield employee_1.default.insertMany(employees);
         console.log('Employees inserted');
         mongoose_1.default.connection.close();

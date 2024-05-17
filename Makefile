@@ -10,4 +10,4 @@ build:
 	docker-compose build
 
 seed-db:
-	docker-compose exec backend ts-node scripts/init-db.ts
+	docker-compose exec backend node scripts/init-db.js

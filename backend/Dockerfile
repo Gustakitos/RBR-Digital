@@ -15,5 +15,7 @@ RUN npm install -g ts-node typescript
 # Copy local code to the container image.
 COPY . .
 
+RUN npx tsc
+
 # Start the backend service
 CMD [ "npm", "run", "dev" ]

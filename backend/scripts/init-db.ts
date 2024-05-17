@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import EmployeeModel from '../models/employee';
 
-const mongoURI = 'mongodb://localhost:27017/rbr-db';
+const mongoURI = 'mongodb://mongo:27017/rbr-db';
 
 const initDB = async () => {
   try {
@@ -9,9 +9,9 @@ const initDB = async () => {
     console.log('MongoDB connected');
 
     const employees = [
-      { name: 'John Doe', title: 'Software Engineer', department: 'Engineering' },
-      { name: 'Jane Smith', title: 'Product Manager', department: 'Product' },
-      { name: 'Alice Johnson', title: 'Designer', department: 'Design' },
+      { name: 'João', title: 'Software Engineer', department: 'Engenharia' },
+      { name: 'Maria', title: 'Product Manager', department: 'Produto' },
+      { name: 'José', title: 'Designer', department: 'Design' },
     ];
 
     await EmployeeModel.deleteMany({});
