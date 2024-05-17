@@ -13,7 +13,6 @@ export default function useGetEmployee() {
       try {
         const response = await fetch(`${HOST}/employees`);
         const data = await response.json();
-        console.log('data: ', data.employees);
 
         setEmployees(data.employees);
         setLoading(false);

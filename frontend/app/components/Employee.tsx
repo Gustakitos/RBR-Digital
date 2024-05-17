@@ -6,5 +6,5 @@ import TableComponent from "./Table";
 export default function Employee() {
   const { employees, loading } = useGetEmployee();
 
-  return <>{loading ? <div>Loading...</div> : <TableComponent employees={employees} />}</>;
+  return <>{loading ? <div>Carregando...</div> : <TableComponent employees={employees} />}</>;
 }

@@ -3,4 +3,5 @@ export interface EmployeeModel {
   name: string;
   title: string;
   department: string;
+  startDate: string;
 }

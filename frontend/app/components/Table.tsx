@@ -14,6 +14,7 @@ export default function TableComponent({ employees }: TableProps) {
             <Th>Nome</Th>
             <Th>Titulo</Th>
             <Th>Departamento</Th>
+            <Th>Data de Inicio</Th>
             <Th>Modificar</Th>
           </Tr>
         </Thead>
@@ -23,7 +24,8 @@ export default function TableComponent({ employees }: TableProps) {
               <Td>{employee.name}</Td>
               <Td>{employee.title}</Td>
               <Td>{employee.department}</Td>
-              <Td>Modificar</Td>
+              <Td>{employee.startDate}</Td>
+              <Td>Editar | Apagar</Td>
             </Tr>
           ))}
         </Tbody>

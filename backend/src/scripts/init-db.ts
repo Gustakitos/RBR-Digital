@@ -9,9 +9,9 @@ const initDB = async () => {
     console.log('MongoDB connected');
 
     const employees = [
-      { name: 'João', title: 'Software Engineer', department: 'Engenharia' },
-      { name: 'Maria', title: 'Product Manager', department: 'Produto' },
-      { name: 'José', title: 'Designer', department: 'Design' },
+      { name: 'João', title: 'Software Engineer', department: 'Engenharia', startDate: new Date().toDateString() },
+      { name: 'Maria', title: 'Product Manager', department: 'Produto', startDate: new Date().toDateString() },
+      { name: 'José', title: 'Designer', department: 'Design', startDate: new Date().toDateString() },
     ];
 
     await Employee.deleteMany({});
