@@ -1,5 +1,6 @@
 import express from 'express';
 import mongoose from 'mongoose';
+import cors from 'cors';
 import EmployeeRouter from './routes/EmployeeRoute';
 const app = express();
 const port = 5001;
@@ -16,7 +17,13 @@ app.get('/', (req, res) => {
   res.send('Hello from the backend!');
 });
 
-app.use('/employee', EmployeeRouter);
+app.use(cors({
+  origin: 'http://localhost:3000',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true
+}));
+
+app.use('/employees', EmployeeRouter);
 
 app.listen(port, () => {
   console.log(`Backend running on port ${port}`);

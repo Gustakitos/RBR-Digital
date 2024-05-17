@@ -3,19 +3,12 @@
 import {
   useDisclosure,
   Box,
-  Button,
-  ChevronDownIcon,
-  ChevronRightIcon,
   CloseIcon,
   Collapse,
   Flex,
   HamburgerIcon,
-  Icon,
   IconButton,
   Link,
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
   Stack,
   Text,
   useBreakpointValue,
@@ -77,14 +70,11 @@ export default function WithSubnavigation() {
 const DesktopNav = () => {
   const linkColor = useColorModeValue("gray.600", "gray.200");
   const linkHoverColor = useColorModeValue("gray.800", "white");
-  const popoverContentBgColor = useColorModeValue("white", "gray.800");
 
   return (
     <Stack direction={"row"} spacing={4}>
       {NAV_ITEMS.map((navItem) => (
         <Box key={navItem.label}>
-          <Popover trigger={"hover"} placement={"bottom-start"}>
-            <PopoverTrigger>
               <Link
                 p={2}
                 href={navItem.href ?? "#"}
@@ -98,8 +88,6 @@ const DesktopNav = () => {
               >
                 {navItem.label}
               </Link>
-            </PopoverTrigger>
-          </Popover>
         </Box>
       ))}
     </Stack>
@@ -153,17 +141,11 @@ interface NavItem {
 
 const NAV_ITEMS: Array<NavItem> = [
   {
-    label: "Inspiration",
+    label: "Home",
+    href: "/",
   },
   {
-    label: "Find Work",
-  },
-  {
-    label: "Learn Design",
-    href: "#",
-  },
-  {
-    label: "Hire Designers",
-    href: "#",
-  },
+    label: "Criar empregado",
+    href: "/criar-empregado",
+  }
 ];

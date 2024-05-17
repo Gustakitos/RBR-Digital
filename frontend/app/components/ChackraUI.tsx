@@ -5,14 +5,9 @@ export {
   Flex,
   Text,
   IconButton,
-  Button,
   Stack,
   Collapse,
-  Icon,
   Link,
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
   useColorModeValue,
   useBreakpointValue,
   useDisclosure,
@@ -21,6 +16,6 @@ export {
 export {
   HamburgerIcon,
   CloseIcon,
-  ChevronDownIcon,
-  ChevronRightIcon,
 } from '@chakra-ui/icons';
+
+// Workaround due to issue: https://github.com/chakra-ui/chakra-ui/issues/7878
