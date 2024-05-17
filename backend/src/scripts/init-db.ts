@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import EmployeeModel from '../models/employee';
+import Employee from '../models/employee';
 
 const mongoURI = 'mongodb://mongo:27017/rbr-db';
 
@@ -14,8 +14,8 @@ const initDB = async () => {
       { name: 'José', title: 'Designer', department: 'Design' },
     ];
 
-    await EmployeeModel.deleteMany({});
-    await EmployeeModel.insertMany(employees);
+    await Employee.deleteMany({});
+    await Employee.insertMany(employees);
     console.log('Employees inserted');
 
     mongoose.connection.close();

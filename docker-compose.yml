@@ -3,15 +3,19 @@ services:
     build: ./frontend
     ports:
       - '3000:3000'
-    depends_on:
-      - backend
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    command: npm run dev
 
   backend:
     build: ./backend
     ports:
       - '5001:5001'
-    environment:
-      - MONGO_URI=mongodb://mongo:27017/rbr-db
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+    command: npm run dev
 
   mongo:
     image: mongo
