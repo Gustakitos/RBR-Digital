@@ -10,6 +10,8 @@ COPY package*.json ./
 # Install dependencies.
 RUN npm install
 
+RUN npm install -g ts-node typescript
+
 # Copy local code to the container image.
 COPY . .
 
