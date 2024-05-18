@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import {
   useDisclosure,
@@ -14,6 +14,7 @@ import {
   useBreakpointValue,
   useColorModeValue,
 } from "./ChackraUI";
+import NextLink from "next/link";
 
 export default function WithSubnavigation() {
   const { isOpen, onToggle } = useDisclosure();
@@ -75,19 +76,20 @@ const DesktopNav = () => {
     <Stack direction={"row"} spacing={4}>
       {NAV_ITEMS.map((navItem) => (
         <Box key={navItem.label}>
-              <Link
-                p={2}
-                href={navItem.href ?? "#"}
-                fontSize={"sm"}
-                fontWeight={500}
-                color={linkColor}
-                _hover={{
-                  textDecoration: "none",
-                  color: linkHoverColor,
-                }}
-              >
-                {navItem.label}
-              </Link>
+          <Link
+            p={2}
+            href={navItem.href ?? "#"}
+            fontSize={"sm"}
+            fontWeight={500}
+            color={linkColor}
+            _hover={{
+              textDecoration: "none",
+              color: linkHoverColor,
+            }}
+            as={NextLink}
+          >
+            {navItem.label}
+          </Link>
         </Box>
       ))}
     </Stack>
@@ -113,7 +115,7 @@ const MobileNavItem = ({ label, href }: NavItem) => {
     <Stack spacing={4}>
       <Flex
         py={2}
-        as={Link}
+        as={NextLink}
         href={href ?? "#"}
         justify={"space-between"}
         align={"center"}
@@ -146,6 +148,6 @@ const NAV_ITEMS: Array<NavItem> = [
   },
   {
     label: "Criar empregado",
-    href: "/criar-empregado",
-  }
+    href: "/create",
+  },
 ];
