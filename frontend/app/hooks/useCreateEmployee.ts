@@ -8,7 +8,7 @@ export default function useCreateEmployee() {
   const createEmployee = useCallback(async (formData: EmployeeModel) => {
     try {
       setLoading(true);
-      await fetch(`${HOST}/employees`, {
+      const response = await fetch(`${HOST}/employees`, {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
@@ -17,6 +17,8 @@ export default function useCreateEmployee() {
         body: JSON.stringify(formData)
       });
       setLoading(false);
+
+      return response;
     } catch (error) {
       console.log('Error creating: ', error);
       setLoading(false);

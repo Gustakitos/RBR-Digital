@@ -29,5 +29,5 @@ export default function useGetEmployees() {
     fetchEmployees();
   }, []);
 
-  return { employees, loading }
+  return { employees, setEmployees, loading }
 }

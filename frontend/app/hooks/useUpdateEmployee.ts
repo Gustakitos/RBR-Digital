@@ -5,10 +5,10 @@ import { HOST } from "@/constants";
 export default function useUpdateEmployee(id: string) {
   const [loading, setLoading] = useState(false);
 
-  const updateEmployee= useCallback(async (formData: EmployeeModel): Promise<void>  => {
+  const updateEmployee= useCallback(async (formData: EmployeeModel)  => {
     try {
       setLoading(true);
-      await fetch(`${HOST}/employees/${id}`, {
+      const response = await fetch(`${HOST}/employees/${id}`, {
         method: 'PATCH',
         headers: {
           'Accept': 'application/json',
@@ -17,6 +17,8 @@ export default function useUpdateEmployee(id: string) {
         body: JSON.stringify(formData)
       });
       setLoading(false);
+
+      return response
     } catch (error) {
       console.log('Error updating: ', error);
       setLoading(false);

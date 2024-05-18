@@ -1,7 +1,6 @@
 "use client";
 
 import {
-  Box,
   Button,
   Flex,
   FormControl,
@@ -9,6 +8,7 @@ import {
   Heading,
   Input,
 } from "@chakra-ui/react";
+import { Box } from "./ChackraUI"
 import { EmployeeModel } from "../types/types";
 import { FormEvent, useState } from "react";
 
@@ -105,7 +105,7 @@ export default function Form({
           </FormControl>
 
           <Button
-            disabled={loadingSubmit}
+            isDisabled={loadingSubmit}
             colorScheme="teal"
             type="submit"
             width={"full"}
