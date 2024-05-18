@@ -17,23 +17,36 @@ import {
   ModalCloseButton,
   ModalBody,
   ModalFooter,
+  Input,
 } from "@chakra-ui/react";
-import { EmployeeModel } from "../types/types";
+import { EmployeeModel, SortConfig } from "../types/types";
 import Link from "next/link";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
-import useDeleteEmployee from "../hooks/useDeleteEmployee";
-import { useCallback, useState } from "react";
+import { Dispatch, SetStateAction, useCallback, useState } from "react";
+import TableHead from "./TableHead";
 
 interface TableProps {
   employees: EmployeeModel[];
   deleteEmployee: (id: string) => Promise<void>;
   loadingDelete: boolean;
+  searchText: string;
+  setSearchText: Dispatch<SetStateAction<string>>;
+
+  handleSort: (key: keyof EmployeeModel) => void;
+  sortConfig: SortConfig;
 }
 
-export default function TableComponent({ employees, deleteEmployee, loadingDelete }: TableProps) {
+export default function TableComponent({
+  employees,
+  deleteEmployee,
+  loadingDelete,
+  searchText,
+  setSearchText,
+  handleSort,
+  sortConfig,
+}: TableProps) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  
   const [selectedId, setSelectedId] = useState<string | undefined>(undefined);
 
   const handleOpenModal = (id: string | undefined) => {
@@ -50,13 +63,39 @@ export default function TableComponent({ employees, deleteEmployee, loadingDelet
   return (
     <>
       <Box>
+        <Input
+          placeholder="Busque por nome, departamento, or cargo"
+          value={searchText}
+          onChange={(e) => setSearchText(e.target.value)}
+          mb={4}
+        />
         <Table size="md">
           <Thead>
             <Tr>
-              <Th>Nome</Th>
-              <Th>Cargo</Th>
-              <Th>Departamento</Th>
-              <Th>Data de Admissão</Th>
+              <TableHead
+                label="Nome"
+                sortKey="name"
+                handleSort={handleSort}
+                sortConfig={sortConfig}
+              />
+              <TableHead
+                label="Cargo"
+                sortKey="title"
+                handleSort={handleSort}
+                sortConfig={sortConfig}
+              />
+              <TableHead
+                label="Departamento"
+                sortKey="department"
+                handleSort={handleSort}
+                sortConfig={sortConfig}
+              />
+              <TableHead
+                label="Data de Admissão"
+                sortKey="startDate"
+                handleSort={handleSort}
+                sortConfig={sortConfig}
+              />
               <Th>Modificar</Th>
             </Tr>
           </Thead>
@@ -116,7 +155,11 @@ export default function TableComponent({ employees, deleteEmployee, loadingDelet
             >
               Sim
             </Button>
-            <Button isDisabled={loadingDelete} variant="ghost" onClick={onClose}>
+            <Button
+              isDisabled={loadingDelete}
+              variant="ghost"
+              onClick={onClose}
+            >
               Fechar
             </Button>
           </ModalFooter>

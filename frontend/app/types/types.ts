@@ -5,3 +5,8 @@ export interface EmployeeModel {
   department: string;
   startDate: string;
 }
+
+export interface SortConfig {
+  key: keyof EmployeeModel | null;
+  direction: "asc" | "desc";
+}

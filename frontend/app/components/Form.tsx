@@ -8,16 +8,17 @@ import {
   Heading,
   Input,
 } from "@chakra-ui/react";
-import { Box } from "./ChackraUI"
+import { Box } from "./ChackraUI";
 import { EmployeeModel } from "../types/types";
 import { FormEvent, useState } from "react";
+import { isEmpty } from "./utils/utils";
 
 interface FormProps {
   onSubmit: (formData: EmployeeModel) => Promise<void>;
   initialState?: {
-    name?: string;
-    title?: string;
-    department?: string;
+    name: string;
+    title: string;
+    department: string;
   };
   loadingSubmit: boolean;
 }
@@ -37,6 +38,7 @@ export default function Form({
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
+
     setFormState({
       ...formState,
       [name]: value,
@@ -48,7 +50,7 @@ export default function Form({
 
     const { name, title, department } = formState;
 
-    if (name && title && department) {
+    if (!isEmpty(name) && !isEmpty(title) && !isEmpty(department)) {
       onSubmit({
         department,
         name,
@@ -81,6 +83,7 @@ export default function Form({
               name="name"
               value={formState.name}
               onChange={handleInputChange}
+              required
             />
           </FormControl>
           <FormControl isRequired mb={4}>
@@ -91,6 +94,7 @@ export default function Form({
               name="title"
               value={formState.title}
               onChange={handleInputChange}
+              required
             />
           </FormControl>
           <FormControl isRequired mb={4}>
@@ -101,6 +105,7 @@ export default function Form({
               name="department"
               value={formState.department}
               onChange={handleInputChange}
+              required
             />
           </FormControl>
 
