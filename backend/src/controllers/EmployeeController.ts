@@ -7,7 +7,6 @@ export const getEmployees = async (req: Request, res: Response): Promise<void> =
     const employees = await Employee.find({});
     res.status(200).json({ employees });
   } catch (error) {
-    console.log('error get all: ', error);
     res.status(500).json({ message: 'Employees not found' });
   }
 };
@@ -35,22 +34,22 @@ export const getEmployeeById = async (req: Request, res: Response): Promise<void
 
 export const createEmployee = async (req: Request, res: Response): Promise<void> => {
   try {
-    const { department, name, title } = req.body;
+    const { department, name, title, startDate } = req.body;
 
     const employee = new Employee({
       department,
       name,
-      title
+      title,
+      startDate
     });
 
-
     await employee.save();
-
     res.status(201).json({
       message: 'Employee created',
     });
+
   } catch (error) {
-    res.status(500).json({ message: 'Error creating employee' });
+    res.status(500).json({ message: 'Error creating employee', error });
   }
 };
 

@@ -1,10 +1,9 @@
 import { Schema, model } from 'mongoose';
 
-interface EmployeeType {
+export interface EmployeeType {
   name: string;
   title: string;
   department: string;
-
   startDate: string;
 }
 

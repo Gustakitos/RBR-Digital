@@ -12,6 +12,8 @@ import {
 } from "@chakra-ui/react";
 import { EmployeeModel } from "../types/types";
 import Link from "next/link";
+import { format } from "date-fns";
+import { ptBR } from "date-fns/locale";
 
 interface TableProps {
   employees: EmployeeModel[];
@@ -26,7 +28,7 @@ export default function TableComponent({ employees }: TableProps) {
             <Th>Nome</Th>
             <Th>Cargo</Th>
             <Th>Departamento</Th>
-            <Th>Data de Inicio</Th>
+            <Th>Data de Admissão</Th>
             <Th>Modificar</Th>
           </Tr>
         </Thead>
@@ -36,10 +38,14 @@ export default function TableComponent({ employees }: TableProps) {
               <Td>{employee.name}</Td>
               <Td>{employee.title}</Td>
               <Td>{employee.department}</Td>
-              <Td>{employee.startDate}</Td>
+              <Td>
+                {format(employee.startDate, "dd/MM/yyyy", {
+                  locale: ptBR,
+                })}
+              </Td>
               <Td>
                 <Flex width={"60%"}>
-                  <Button colorScheme="blue" type="submit" as={Link} href={'/'}>
+                  <Button colorScheme="blue" type="submit" as={Link} href={"/editar"}>
                     Editar
                   </Button>
                   <Spacer />
