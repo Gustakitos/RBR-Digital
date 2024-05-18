@@ -29,9 +29,9 @@ export default function EditEmployee({ params }: { params: { id: string } }) {
       ) : (
         <Form
           initialState={{
-            name: employee?.name,
-            department: employee?.department,
-            title: employee?.title
+            name: employee?.name || '',
+            department: employee?.department || '',
+            title: employee?.title || ''
           }}
           onSubmit={handleUpdate}
           loadingSubmit={loadingUpdate}
