@@ -14,14 +14,26 @@ import { FormEvent, useState } from "react";
 
 interface FormProps {
   onSubmit: (formData: EmployeeModel) => Promise<void>;
+  initialState?: {
+    name?: string;
+    title?: string;
+    department?: string;
+  };
+  loadingSubmit: boolean;
 }
 
-export default function Form({ onSubmit }: FormProps) {
-  const [formState, setFormState] = useState({
-    name: "",
-    title: "",
-    department: "",
-  });
+const INITIAL_STATE = {
+  name: "",
+  title: "",
+  department: "",
+};
+
+export default function Form({
+  onSubmit,
+  initialState = INITIAL_STATE,
+  loadingSubmit,
+}: FormProps) {
+  const [formState, setFormState] = useState(initialState);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -34,14 +46,16 @@ export default function Form({ onSubmit }: FormProps) {
   const submitForm = (formValues: FormEvent<HTMLElement>) => {
     formValues.preventDefault();
 
-    console.log('form data: ', formState);
+    const { name, title, department } = formState;
 
-    onSubmit({
-      department: formState.department,
-      name: formState.name,
-      title: formState.title,
-      startDate: new Date().toString()
-    })
+    if (name && title && department) {
+      onSubmit({
+        department,
+        name,
+        title,
+        startDate: new Date().toString(),
+      });
+    }
   };
 
   return (
@@ -54,7 +68,9 @@ export default function Form({ onSubmit }: FormProps) {
         boxShadow="lg"
       >
         <Box textAlign="center" mb={4}>
-          <Heading>Criar funcionario</Heading>
+          <Heading>
+            {initialState.name ? "Editar funcionario" : "Criar funcionario"}
+          </Heading>
         </Box>
         <form onSubmit={submitForm}>
           <FormControl isRequired mb={4}>
@@ -88,8 +104,13 @@ export default function Form({ onSubmit }: FormProps) {
             />
           </FormControl>
 
-          <Button colorScheme="teal" type="submit" width={"full"}>
-            Criar
+          <Button
+            disabled={loadingSubmit}
+            colorScheme="teal"
+            type="submit"
+            width={"full"}
+          >
+            {loadingSubmit ? "Salvando..." : "Salvar"}
           </Button>
         </form>
       </Box>

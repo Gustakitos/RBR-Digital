@@ -148,6 +148,6 @@ const NAV_ITEMS: Array<NavItem> = [
   },
   {
     label: "Criar empregado",
-    href: "/create",
+    href: "/criar",
   },
 ];

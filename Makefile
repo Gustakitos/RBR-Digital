@@ -2,6 +2,7 @@
 
 start:
 	docker-compose up -d
+	@make seed-db
 
 down:
 	docker-compose down

@@ -45,7 +45,7 @@ export default function TableComponent({ employees }: TableProps) {
               </Td>
               <Td>
                 <Flex width={"60%"}>
-                  <Button colorScheme="blue" type="submit" as={Link} href={"/editar"}>
+                  <Button colorScheme="blue" type="submit" as={Link} href={`/editar/${employee._id}`}>
                     Editar
                   </Button>
                   <Spacer />
